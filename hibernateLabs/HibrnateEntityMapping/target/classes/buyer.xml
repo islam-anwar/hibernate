@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="dto.Buyer" table="buyer"
+           catalog="biddingschema">
+        
+        <id name="id" column="id" type="int" >
+            <generator class="native"/>
+        </id>
+        <property name="value" column="value" type="string"/>
+        
+         <set name="buyerBuyProduct" table="buyer_buy_product" inverse="true">
+        
+            <key>
+                <column name="buyer_id"/>
+            </key>
+            <one-to-many class="dto.BuyerBuyProduct" />
+        </set>
+        <set name="buyerBidProduct" table="buyer_bid_product" inverse="true">
+        
+            <key>
+                <column name="buyer_id"/>
+            </key>
+            <one-to-many class="dto.BuyerBidProduct" />
+        </set>
+        
+        <one-to-one name="user" class="dto.User"
+			constrained="true"></one-to-one>
+
+    </class>
+</hibernate-mapping>

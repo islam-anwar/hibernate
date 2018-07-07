@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping >
+    
+    <class name="com.hibernate.hibernateinheritance3.Person" table="person">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <discriminator column="person_type" type="string"/>
+        
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+    </class>
+    <subclass name="com.hibernate.hibernateinheritance3.Student" extends="com.hibernate.hibernateinheritance3.Person" discriminator-value="Student">
+        <property name="department" column="department"/>
+    </subclass>
+    <subclass name="com.hibernate.hibernateinheritance3.Teacher" extends="com.hibernate.hibernateinheritance3.Person" discriminator-value="Teacher">
+        <property name="hireDate" column="hire_date"
+                  type="date"/>
+    </subclass>
+
+
+    
+</hibernate-mapping>

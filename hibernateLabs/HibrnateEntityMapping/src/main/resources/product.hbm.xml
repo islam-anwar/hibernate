@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="dto.Product" table="product"
+           catalog="biddingschema">
+        
+        <id name="id" column="id" type="int" >
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="description" column="description" type="string"/>
+        <property name="manufacturing_name" column="manufacturing_name" type="string"/>
+        <property name="manufacturing_date" column="manufacturing_date" type="date"/>
+        <property name="expiration_date" column="expiration_date" type="date"/>
+        <property name="seller_id" column="seller_id" type="int"/>
+        <property name="quantity" column="quantity" type="int"/>
+        <property name="offered_date" column="offered_date" type="date"/>
+        <property name="finished_date" column="finished_date" type="date"/>
+
+        
+        <many-to-one name="seller" class="dto.Seller">
+            <column name="seller_id"/>
+        </many-to-one>
+        
+        <set name="categories" table="product_has_category">
+            <key> 
+                <column name="product_id" /> 
+            </key>
+            <many-to-many entity-name="dto.Category" >
+                <column name="category_id" not-null="true"/>
+            </many-to-many>
+        </set>
+        
+        <set name="buyerBuyProduct" table="buyer_buy_product" inverse="true">
+        
+            <key>
+                <column name="product_id"/>
+            </key>
+            <one-to-many class="dto.BuyerBuyProduct" />
+        </set>
+        <set name="buyerBidProduct" table="buyer_bid_product" inverse="true">
+        
+            <key>
+                <column name="product_id"/>
+            </key>
+            <one-to-many class="dto.BuyerBidProduct" />
+        </set>
+       
+    </class>
+</hibernate-mapping>

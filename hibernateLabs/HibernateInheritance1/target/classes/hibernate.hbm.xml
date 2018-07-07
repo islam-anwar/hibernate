@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--<hibernate-mapping>
+    <class name="com.hibernate.hibernate2.Users" table="users"
+           catalog="hibernate">
+        <id name="id" column="id" type="int" >
+            <generator class="native"/>
+        </id>
+        <property name="userName" column="user_name" type="string"/>
+        <property name="email" column="email"  type="string"/>
+        <property name="password" column="password"  type="string"/>
+        
+    </class>
+</hibernate-mapping>-->
+
+<hibernate-mapping >
+    
+    <class name="com.hibernate.hibernateinheritance1.Person" table="person">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+    </class>
+    
+    <class name="com.hibernate.hibernateinheritance1.Student" table="student">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+        <property name="department" column="department"/>
+    </class>
+    
+    <class name="com.hibernate.hibernateinheritance1.Teacher" table="teacher">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+        <property name="hireDate" column="hire_date"
+                          type="date"/>
+    </class>
+    
+</hibernate-mapping>
